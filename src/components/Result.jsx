@@ -2,12 +2,19 @@ import React from 'react';
 import { calculateInvestmentResults, formatter } from '../util/investment';
 
 const Result = ({ userInput }) => {
+  const resultsData = [];
   console.log(userInput);
-  const resultData = calculateInvestmentResults(userInput);
+
+  calculateInvestmentResults(userInput, resultsData);
+
+  if (resultsData.length === 0) {
+    return <p className="centered">Invalid duration value provided!</p>;
+  }
+
   const innitialInvestment =
-    resultData[0].valueEndOfYear -
-    resultData[0].interest -
-    resultData[0].annualInvestment;
+    resultsData[0].valueEndOfYear -
+    resultsData[0].interest -
+    resultsData[0].annualInvestment;
 
   return (
     <table id="result">
@@ -21,7 +28,7 @@ const Result = ({ userInput }) => {
         </tr>
       </thead>
       <tbody>
-        {resultData.map((result) => {
+        {resultsData.map((result) => {
           const totalInterest =
             result.valueEndOfYear -
             result.annualInvestment * result.year -

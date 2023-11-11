@@ -28,11 +28,12 @@ const App = () => {
     <div>
       <Header />
       <InputsGroup userInput={userInput} setInput={handleChange} />
-      {inputIsValid ? (
+      {/* {inputIsValid ? (
         <Result userInput={userInput} />
       ) : (
         <p className="centered">Enter a duration greater than 0.</p>
-      )}
+      )} */}
+      <Result userInput={userInput} />
     </div>
   );
 };
